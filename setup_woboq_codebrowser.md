@@ -2,42 +2,40 @@
 # Setup Woboq codebrowser in Ubuntu
 
 # Install codebrowser from source
-1. Install dependencies (tested in Ubuntu 20)
+1. Install dependencies (tested in Ubuntu 20)<br>
 	`sudo apt install cmake llvm clang libclang-dev`
 
-2. Clone source code
+2. Clone source code<br>
 	`git clone https://github.com/KDAB/codebrowser.git`
 
-3. Compile source with `cmake`
+3. Compile source with `cmake`<br>
 	`cmake . && make`
 
-4. Install in system
+4. Install in system<br>
 	`sudo make install`
 
 # Install codebrowser from debian package
 ### Pre-requisites
-1. Bear: Generates a compilation database for clang tooling
+1. [Bear](https://github.com/rizsotto/Bear): Generates a compilation database for clang toolset
 	- `sudo apt install bear`
-	- [Source](https://github.com/rizsotto/Bear)
 
 2. Download and Install codebrowser
+	- Ubuntu package requires llvm-4.0 library `sudo apt install llvm-4.0 libtinfo5`
 	- [Debian](https://download.opensuse.org/repositories/home:/pansenmann:/woboq/Debian_9.0/amd64/woboq-codebrowser_2.1_amd64.deb)
 	- [Ubuntu](https://download.opensuse.org/repositories/home:/pansenmann:/woboq/xUbuntu_17.04/amd64/woboq-codebrowser_2.1_amd64.deb)
-	- Ubuntu package requires llvm-4.0 library `sudo apt install llvm-4.0 libtinfo5`
 
 3. This will install couple of binaries in the system
 	- `codebrowser_generator` - Create code HTML
 	- `codebrowser_indexgenerator` - Generate the directory index HTML files
-	- [Home](https://woboq.com/codebrowser.html)
-	- [Source](https://github.com/KDAB/codebrowser)
+	- [Home](https://woboq.com/codebrowser.html) [Source](https://github.com/KDAB/codebrowser)
 
 # Setup without bear tool
 This setup doesn't require `compile_commands.json` file.
 
-1. Create HTML version of your source code using `codebrowser_generator` command
+1. Create HTML version of your source code using `codebrowser_generator` command<br>
 	`codebrowser_generator -o ./output -p <project-name>:$PWD $PWD --`
 
-2. Generate HTML index files using `codebrowser_indexgenerator` command
+2. Generate HTML index files using `codebrowser_indexgenerator` command<br>
 	`codebrowser_indexgenerator -p <project>:$PWD ./output`
 
 3. Get [CSS](https://github.com/KDAB/codebrowser/tree/master/data) assets and place it in parent directory of `./output`
@@ -69,6 +67,5 @@ This setup doesn't require `compile_commands.json` file.
 7. Explore your project in browser at `http://localhost/output`
 
 # Example
-codebrowser_generator -o ./devcode -p MyProject:$PWD $PWD --
-codebrowser_indexgenerator -p MyProject:$PWD ./devcode
-
+`codebrowser_generator -o ./devcode -p MyProject:$PWD $PWD --`<br>
+`codebrowser_indexgenerator -p MyProject:$PWD ./devcode`
