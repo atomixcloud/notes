@@ -1,4 +1,7 @@
 # SSH Service
+
+**/etc/systemd/system/sshd.service:**
+```
 [Unit]
 Description=OpenBSD Secure Shell server
 Documentation=man:sshd(8) man:sshd_config(5)
@@ -21,3 +24,14 @@ RuntimeDirectoryMode=0755
 [Install]
 WantedBy=multi-user.target
 Alias=sshd.service
+```
+
+### Operation:
+```
+# systemctl --system daemon-reload
+# systemctl status sshd.service
+# systemctl start sshd.service
+# systemctl stop <service_name>.service
+# systemctl enable sshd.service
+# systemctl disable <service_name>.service
+```
